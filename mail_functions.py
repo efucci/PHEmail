@@ -14,10 +14,19 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
+#Credentials smpt for MailTrap
+user = '4af48ff5bf173f'
+password = 'be978723ada37e'
+address = 'smtp.mailtrap.io'
+domain =  'smtp.mailtrap.io'
+port = '2525'
+
 
 def send_mail(smtp_ssl_host, smtp_ssl_port, user, password, recipient, text, subject):
 
-    server = smtplib.SMTP_SSL(smtp_ssl_host, smtp_ssl_port)
+    #server = smtplib.SMTP_SSL(smtp_ssl_host, smtp_ssl_port)
+    server = smtplib.SMTP("smtp.mailtrap.io", 2525)
+    sender = 'Eleonora Fucci'
     if server.has_extn('STARTTLS'):
         server.starttls()
         server.ehlo() # re-identify ourselves over TLS connection
@@ -26,6 +35,9 @@ def send_mail(smtp_ssl_host, smtp_ssl_port, user, password, recipient, text, sub
         os.mkdir(user)
         gen_keys(user)
 
+    if not os.path.exists(recipient):
+        os.mkdir(recipient)
+        gen_keys(recipient)
 
     enc = encrypt_msg(text, recipient)
     msg = MIMEText(base64.b64encode(enc).decode('utf-8'))
@@ -33,7 +45,7 @@ def send_mail(smtp_ssl_host, smtp_ssl_port, user, password, recipient, text, sub
     msg['Subject'] = subject
     #msg['From'] = email.utils.formataddr(('Author',user))
     #msg['To'] = email.utils.formataddr(('Recipient',recipient))
-    msg['From'] = user
+    msg['From'] = sender
     msg['To'] = recipient
     sign=sign_msg(text,user)
     msg['Signature'] = base64.b64encode(sign).decode('utf-8')
@@ -81,25 +93,26 @@ def read_message(imap_url,imap_port, box_name):
         connection.logout()
 
 
-
+'''
 subject= 'Hello'
-smtp_ssl_host = 'smtp.gmail.com' #' faui13mail.cs.fau.de'
-smtp_ssl_port = 465  # SSL/TLS port
+smtp_ssl_host ='smtp.mailtrap.io' #'smtp.gmail.com' #' faui13mail.cs.fau.de'
+smtp_ssl_port = 2525 #465  # SSL/TLS port
 sender = 'fuele95@gmail.com'   #'test@i13.informatik.uni-erlangen.de' #root@faui13phemail.informatik.uni-erlangen.de
 target = 'fuele95@gmail.com'  #recipients list
 
-#message='Hi, how are you today?'
+message='Hi, how are you today?'
 
 
-user = input("user: ")
-password = input("password: ")
-target = input("recipient: ")
-message= input("text: ")
+#user = input("user: ")
+#password = input("password: ")
+#target = input("recipient: ")
+#message= input("text: ")
 
 send_mail(smtp_ssl_host, smtp_ssl_port, user, password, target ,message, subject)
 
-imap_url = "imap.gmail.com"
+#imap_url = "imap.gmail.com"
+imap_url = 'imap.mailtrap.io'
 imap_port=993
 box_name='INBOX'
-read_message(imap_url, imap_port,box_name)
-
+#read_message(imap_url, imap_port,box_name)
+'''
