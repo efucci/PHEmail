@@ -1,5 +1,6 @@
 import imaplib
 import smtplib
+
 from email.mime.text import MIMEText
 import email.mime
 import email
@@ -14,19 +15,13 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 
-#Credentials smpt for MailTrap
-user = '4af48ff5bf173f'
-password = 'be978723ada37e'
-address = 'smtp.mailtrap.io'
-domain =  'smtp.mailtrap.io'
-port = '2525'
 
+def send_mail(smtp_ssl_host, smtp_ssl_port, user, password, recipient, data):
 
-def send_mail(smtp_ssl_host, smtp_ssl_port, user, password, recipient, text, subject):
-
-    #server = smtplib.SMTP_SSL(smtp_ssl_host, smtp_ssl_port)
-    server = smtplib.SMTP("smtp.mailtrap.io", 2525)
+    server = smtplib.SMTP_SSL(smtp_ssl_host, smtp_ssl_port)
+    #server = smtplib.SMTP(smtp_ssl_host, smtp_ssl_port)
     sender = 'Eleonora Fucci'
+
     if server.has_extn('STARTTLS'):
         server.starttls()
         server.ehlo() # re-identify ourselves over TLS connection
@@ -39,24 +34,22 @@ def send_mail(smtp_ssl_host, smtp_ssl_port, user, password, recipient, text, sub
         os.mkdir(recipient)
         gen_keys(recipient)
 
+    email_message = email.message_from_bytes(data)
+    text=email_message.get_payload()
     enc = encrypt_msg(text, recipient)
-    msg = MIMEText(base64.b64encode(enc).decode('utf-8'))
+    email_message.set_payload(base64.b64encode(enc).decode('utf-8'))
 
-    msg['Subject'] = subject
-    #msg['From'] = email.utils.formataddr(('Author',user))
-    #msg['To'] = email.utils.formataddr(('Recipient',recipient))
-    msg['From'] = sender
-    msg['To'] = recipient
-    sign=sign_msg(text,user)
-    msg['Signature'] = base64.b64encode(sign).decode('utf-8')
+    sign = sign_msg(text,user)
+    email_message['Signature'] = base64.b64encode(sign).decode('utf-8')
 
     server.login(user, password)
-    server.sendmail(sender, recipient, msg.as_string())
+    server.sendmail(sender, recipient, email_message.as_string())
 
     server.quit()
 
 
-def read_message(imap_url,imap_port, box_name):
+
+def read_message(imap_url, imap_port, user, password, box_name):
 
     connection = imaplib.IMAP4_SSL(imap_url, imap_port)
     connection.login(user, password)
@@ -87,10 +80,8 @@ def read_message(imap_url,imap_port, box_name):
                     else:
                         print("sign is invalid")
 
-
-
-        connection.close()
-        connection.logout()
+    connection.close()
+    connection.logout()
 
 
 '''
