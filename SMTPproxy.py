@@ -8,8 +8,8 @@ from crypto_functions import gen_keys, encrypt_msg, sign_msg
 from mail_functions import send_mail
 
 #Credentials smpt for MailTrap
-user ='fuele95@gmail.com'#'4af48ff5bf173f'
-password = 'Silvestro95'#'be978723ada37e'
+user ='4af48ff5bf173f'
+password = 'be978723ada37e'
 address = 'smtp.mailtrap.io'
 domain = 'smtp.gmail.com'
 port = 465 #'2525'
