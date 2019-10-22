@@ -2,10 +2,14 @@ import base64
 import email
 import imaplib
 import socket
-from email.mime.text import MIMEText
 import ssl
 import threading
-from crypto_functions import decrypt_msg,verify_sign
+import time
+
+from cryptoFunctions import decrypt_msg, verify_sign
+
+ENDOF = '#'
+user = ''
 
 # Intercepted commands
 COMMANDS = (
@@ -13,75 +17,32 @@ COMMANDS = (
     'login',
     'logout',
     'select',
-    'move',
+    'close',
     'fetch'
 )
 
+# Authorized domain addresses with their corresponding host
+HOSTS = {
+    'hotmail': 'imap-mail.outlook.com',
+    'outlook': 'imap-mail.outlook.com',
+    'yahoo': 'imap.mail.yahoo.com',
+    'gmail': 'imap.gmail.com',
+    # 'dovecot': 'dovecot.travis.dev'  # for Travis-CI
+}
+
 MAX_CLIENT = 5
 IMAP_PORT = 143
-IMAP_SSL_PORT= 993
+IMAP_SSL_PORT = 993
 BUFFER_SIZE = 1024
-
-
-
-def read_message(imap_url, imap_port, user, password, box_name):
-    try:
-        connection = imaplib.IMAP4_SSL(imap_url, imap_port)
-        connection.login(user, password)
-        connection.select(box_name)
-
-        to_send = []
-
-        result, data = connection.uid('search', None, "ALL")
-
-        if result == 'OK':
-            for num in data[0].split():
-
-                result, data = connection.uid('fetch', num, '(RFC822)')
-
-                if result == 'OK':
-
-                    email_message = email.message_from_bytes(data[0][1])
-                    if email_message['From'] == 'fuele95@gmail.com':
-                        try:
-                            sign = base64.b64decode(email_message['Signature'])
-                            pay = base64.b64decode(email_message.get_payload())
-                            dec = decrypt_msg(pay, user)
-                            email_message.set_payload(dec)
-                            verified = verify_sign(sign, dec, email_message['From'])
-                            if verified:
-
-                                print("sign is valid")
-                                print('From:' + email_message['From'])
-                                print('To:' + email_message['To'])
-                                print('Date:' + email_message['Date'])
-                                print('Subject:' + str(email_message['Subject']))
-                                print('Content: ' + dec)
-                            else:
-                                print("sign is invalid")
-                            to_send.append((email_message, verified))
-                        except Exception as e:
-                            print(e)
-
-    except Exception as e:
-        print(e)
-
-    connection.close()
-    connection.logout()
-
-    return to_send
-
 
 class MyIMAPproxy():
 
-    def __init__(self, port=None, host='', certfile=None, max_client=MAX_CLIENT, verbose=False,
-             ipv6=False):
-        self.verbose = verbose
-        #self.certfile = certfile
-        #self.key = key
 
-        if not port:  # Set default port
-            port = IMAP_SSL_PORT if certfile else IMAP_PORT
+    def __init__(self, port=None, host='', max_client=MAX_CLIENT, verbose=False,
+                 ipv6=False):
+        self.verbose = verbose
+        if not port:
+            port = IMAP_SSL_PORT
 
         if not max_client:
             max_client = MAX_CLIENT
@@ -92,42 +53,148 @@ class MyIMAPproxy():
 
         self.sock.bind((host, port))
         self.sock.listen(max_client)
-
-        conn_client, addr = self.sock.accept()
-        print('Connection address:', addr)
-        data = ('I am ready').encode('utf-8')
-        conn_client.send(data)
-
-        received = str(conn_client.recv(1024), "utf-8")
-
-        if received in COMMANDS:
-            print(received)
+        self.client_listener()
 
 
-        #emails = read_message('imap.gmail.com', 993, user, password, 'INBOX')
-        emails=""
-        for i in range(1,3):
+    def client_listener(self):
+        while True:
+            try:
+                ssock, addr = self.sock.accept()
+                # Connect the proxy with the client
+                threading.Thread(target=self.connection_client, args=(ssock,)).start()
+            except KeyboardInterrupt:
+                break
+            except ssl.SSLError as e:
+                raise
+
+        if self.sock:
+            self.sock.close()
+
+    def connection_client(self, ssock):
+        Connection(ssock, self.verbose)
 
 
-            # Create the message
-            msg = MIMEText('This is the body of the message '+str(i))
-            msg['To'] = email.utils.formataddr(('Recipient', 'recipient@example.com'))
-            msg['From'] = email.utils.formataddr(('Author', 'author@example.com'))
-            msg['Subject'] = 'Simple test message'
-            emails=emails+msg.as_string()+',True#'
+class Connection:
 
-        conn_client.send(emails.encode('utf-8'))
+    def __init__(self, conn_socket, verbose=False):
+        self.verbose = verbose
+        self.conn_client = conn_socket
+        self.conn_server = None
+
+        try:
+            self.send_to_client('OK Service Ready')  # Server greeting
+            self.listen_client()
+        except ssl.SSLError:
+            pass
+        except (BrokenPipeError, ConnectionResetError):
+            print('Connections closed')
+        except ValueError as e:
+            print('[ERROR]', e)
+
+        if self.conn_client:
+            self.conn_client.close()
+
+    def listen_client(self):
+        """ Listen commands from the client """
+
+        while self.listen_client:
+            request = str(self.conn_client.recv(BUFFER_SIZE), "utf-8")
+            request = request.split("\n")
+            print(request[0])
+            print(request)
+
+            if request[0] not in COMMANDS:
+
+                # Not a correct request
+                self.send_to_client('Incorrect request')
+                raise ValueError('Error while listening the client: '
+                                 + request[0] + ' contains no command')
+            else:
+                self.command(request[0], request)
+
+    def command(self, comm, request):
+        if len(request) == 1:
+            getattr(self,comm)()
+        elif len(request) == 2:
+            getattr(self, comm)(request[1])
+        else:
+            getattr(self, comm)(request[1],request[2])
+
+    def send_to_client(self, text):
+        self.conn_client.send(text.encode('utf-8'))
+
+    def login(self, username, password):
+        domains = username.split('@')[1].split('.')[:-1]  # Remove before '@' and remove '.com' / '.be' / ...
+        domain = ' '.join(str(d) for d in domains)
+        try:
+            hostname = HOSTS[domain]
+            self.conn_server = imaplib.IMAP4_SSL(hostname)
+            self.conn_server.login(username, password)
+            self.send_to_client("OK")
+
+        except KeyError:
+            self.send_to_client('Unknown hostname')
+            raise ValueError('Error while connecting to the server: '
+                             + 'Invalid domain name ' + domain)
+
+        except imaplib.IMAP4.error:
+            self.send_to_client("Login failed ---> Invalid credentials:"+ username + " / " + password)
+            raise ValueError('Error while connecting to the server: '
+                             + 'Invalid credentials: ' + username + " / " + password)
+        self.send_to_client("Successful login")
+
+    def select(self, box_name):
+        try:
+            self.conn_server.select(box_name)
+            self.send_to_client("OK")
+        except Exception:
+            self.send_to_client("Invalid mail box name")
+            raise ValueError('Error while selecting mail box:' + 'Invalid name: ' + box_name)
+
+    def fetch(self):
+        try :
+            mails_list = self.read_message()
+            self.send_to_client('OK\n',mails_list)
+        except Exception as e:
+            self.send_to_client(str(e))
+
+    def close(self):
+        self.conn_server.close()
+        self.conn_client.close()
+        self.send_to_client("OK")
+
+    def logout(self):
+        self.conn_server.logout()
+        self.send_to_client("OK")
+
+    def read_message(self):
+        try:
+            result, data = self.conn_server.uid('search', None, "ALL")
+            to_send = ""
+
+            if result == 'OK':
+                for num in data[0].split():
+
+                    result, data = self.conn_server.uid('fetch', num, '(RFC822)')
+
+                    if result == 'OK':
+                        email_message = email.message_from_bytes(data[0][1])
+                        if email_message['From'] == 'fuele95@gmail.com':
+                            try:
+                                sign = base64.b64decode(email_message['Signature'])
+                                pay = base64.b64decode(email_message.get_payload())
+                                dec = decrypt_msg(pay, user)
+                                email_message.set_payload(dec)
+                                verified = verify_sign(sign, dec, email_message['From'])
+
+                                to_send = to_send + email_message.as_string() + str(verified) + ENDOF
+                            except Exception as e:
+                                print(e)
+
+        except Exception as e:
+            print(e)
+
+        return to_send
 
 
-        #while 1:
-        #    data = conn_client.recv()
-        #    if not data: break
-        #   print("received data:", data)
-            #conn.send(data)  # echo
-
-        #conn_client.close()
-
-
-
-
-imap_proxy = MyIMAPproxy()
+MyIMAPproxy()

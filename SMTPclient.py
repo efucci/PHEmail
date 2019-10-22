@@ -19,5 +19,6 @@ try:
     #server.set_debuglevel(True) # show communication with the server
     #server.sendmail('author@example.com', ['recipient@example.com'], msg.as_string())
     server.sendmail('fuele95@gmail.com',['fuele95@gmail.com'], msg.as_string())
+
 finally:
     server.quit()
