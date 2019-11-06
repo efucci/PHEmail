@@ -277,8 +277,6 @@ class Connection:
         self.set_current_folder(self.client_flags)
         self.transmit()
 
-    #       CIRCL modules
-
     def fetch(self):
         """ Fetch an email """
         pycircleanmail_module(self)
