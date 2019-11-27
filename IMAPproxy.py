@@ -6,7 +6,7 @@ import ssl
 import threading
 
 
-from cryptoFunctions import decrypt_msg, verify_sign
+from crypto_utils import decrypt_msg, verify_sign
 
 ENDOF = '#'
 user = 'fuele95@gmail.com'
@@ -27,6 +27,10 @@ HOSTS = {
     'outlook': 'imap-mail.outlook.com',
     'yahoo': 'imap.mail.yahoo.com',
     'gmail': 'imap.gmail.com',
+    'studenti.unisa':'imap.gmail.com',
+    'unisa':'imap.gmail.com',
+    'fau': 'faumail.fau.de',
+    'cs.fau': 'faumail.fau.de',
     # 'dovecot': 'dovecot.travis.dev'  # for Travis-CI
 }
 
@@ -130,8 +134,10 @@ class Connection:
         self.conn_client.send(text.encode('utf-8'))
 
     def login(self, username, password):
+        self.username = username
+        self.password = password
         domains = username.split('@')[1].split('.')[:-1]  # Remove before '@' and remove '.com' / '.be' / ...
-        domain = ' '.join(str(d) for d in domains)
+        domain = '.'.join(str(d) for d in domains)
         try:
             hostname = HOSTS[domain]
             self.conn_server = imaplib.IMAP4_SSL(hostname)

@@ -5,7 +5,7 @@ from email.mime.text import MIMEText
 import email.mime
 import email
 
-from cryptoFunctions import *
+from crypto_utils import *
 import os
 import base64
 import logging

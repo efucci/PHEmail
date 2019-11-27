@@ -1,11 +1,12 @@
 import cryptography.exceptions
 from cryptography.hazmat.backends import default_backend
-from cryptography.hazmat.primitives.serialization import load_pem_public_key
+from cryptography.hazmat.primitives.serialization import load_pem_public_key,load_pem_private_key
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric import rsa
 from cryptography.hazmat.primitives.asymmetric import padding
 from cryptography.hazmat.primitives import hashes
 import base64
+from wkd import get_keys
 
 
 
@@ -45,7 +46,6 @@ def sign_msg(message, user):
             salt_length=padding.PSS.MAX_LENGTH
         ),
         algorithm=hashes.SHA256()
-
     )
 
     return signature
@@ -77,11 +77,9 @@ def verify_sign(signature, message, user):
 #Encrypt
 def encrypt_msg(message, user):
 
-    public_key=read_ek(user)
+    public_key = read_ek(user)
     message = base64.b64encode(message.encode('utf-8'))
     #message=bytes(message,'utf-8')
-
-
     encrypted = public_key.encrypt(
         message,
         padding.OAEP(
@@ -95,8 +93,8 @@ def encrypt_msg(message, user):
 
 #Decrypt
 def decrypt_msg(encrypted, user):
-    private_key=read_dk(user)
 
+    private_key = read_dk(user)
     #encrypted=bytes(encrypted,"utf-8")
     original_message = private_key.decrypt(
         encrypted,
@@ -158,12 +156,11 @@ def store_sk(private_key, user):
         f.write(pem)
 
 
-
 #Read private key (sign)
 def read_sk(user):
     file = user+'/sk.key'
     with open(file, "rb") as key_file:
-        private_key = serialization.load_pem_private_key(
+        private_key = load_pem_private_key(
             key_file.read(),
             password=None,
             backend=default_backend()
@@ -172,11 +169,8 @@ def read_sk(user):
 
 #Read public key (sign)
 def read_pk(user):
-    file = user+'/pk.pem'
-    with open(file, 'rb') as pem_in:
-        pemlines = pem_in.read()
-    public_key = load_pem_public_key(pemlines, default_backend())
-
+    public_key = get_keys(user, 'public_key')
+    public_key = load_pem_public_key(public_key.encode('utf-8'), default_backend())
     return public_key
 
 
@@ -184,7 +178,7 @@ def read_pk(user):
 def read_dk(user):
     file = user+'/dk.key'
     with open(file, "rb") as key_file:
-        private_key = serialization.load_pem_private_key(
+        private_key = load_pem_private_key(
             key_file.read(),
             password=None,
             backend=default_backend()
@@ -194,13 +188,20 @@ def read_dk(user):
 
 #Read encrypt key
 def read_ek(user):
-
-    file = user+'/ek.pem'
-    with open(file, 'rb') as pem_in:
-        pemlines = pem_in.read()
-    public_key = load_pem_public_key(pemlines, default_backend())
-
-    return public_key
+    encrypt_key = get_keys(user,'encrypt_key')
+    encrypt_key = load_pem_public_key(encrypt_key.encode('utf-8'),default_backend())
+    return encrypt_key
 
 
 
+
+'''
+message = 'ciao come stai'
+enc1=encrypt_msg(message,'fuele95@gmail.com')
+
+test1=base64.b64encode(enc1).decode('utf-8')
+print('testo1 ', test1)
+
+dec1=decrypt_msg(enc1,'fuele95@gmail.com')
+print(dec1)
+'''

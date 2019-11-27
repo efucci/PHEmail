@@ -19,12 +19,13 @@ try:
         server.starttls()
         server.ehlo()  # re-identify ourselves over TLS connection
 
-    server.login('bcoe', 'foobar')
-    server.set_debuglevel(True) # show communication with the server
+    server.set_debuglevel(True)  # show communication with the server
+    server.login('author@gmail.com', 'foobar')
+
     server.sendmail('author@example.com', ['recipient@example.com'], msg.as_string())
     #server.sendmail('fuele95@gmail.com',['fuele95@gmail.com'], msg.as_string())
-except Exception as e:
-    print(e)
+except smtplib.SMTPAuthenticationError:
+    print('Login failed: password or username invalid!')
 finally:
     server.quit()
 

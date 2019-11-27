@@ -8,6 +8,7 @@ BUFFER_SIZE = 1024
 #imap_url = 'imap.mailtrap.io'
 imap_url = 'localhost'
 imap_port=143 #993
+imap_ssl_port= 993
 box_name='INBOX'
 ENDOF='#'
 user = 'fuele95@gmail.com'
