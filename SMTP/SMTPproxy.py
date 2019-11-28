@@ -1,7 +1,7 @@
 import ssl, smtpd, smtplib, secure_smtpd, email, base64, asyncore
 import logging, os
 from secure_smtpd import proxy_server
-from crypto_utils import gen_keys, encrypt_msg, sign_msg
+from registration import gen_keys, encrypt_msg, sign_msg
 
 
 # Authorized domain addresses with their corresponding host

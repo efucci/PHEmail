@@ -4,9 +4,10 @@ import imaplib
 import socket
 import ssl
 import threading
+import logging, os
 
 
-from crypto_utils import decrypt_msg, verify_sign
+from registration import decrypt_msg, verify_sign
 
 ENDOF = '#'
 user = 'fuele95@gmail.com'
@@ -66,20 +67,28 @@ class MyIMAPproxy():
     def client_listener(self):
         while True:
             try:
+                print("accettando")
                 ssock, addr = self.sock.accept()
+                print("ho accettato")
                 connstream = self.context.wrap_socket(ssock, server_side=True)
 
                 # Connect the proxy with the client
+                print("connetto il proxy al client")
+
                 threading.Thread(target=self.connection_client, args=(connstream,)).start()
             except KeyboardInterrupt:
                 break
             except ssl.SSLError as e:
                 raise e
+            except Exception as e:
+                print(e)
 
         if self.sock:
+            print(self.sock, " :socket")
             self.sock.close()
 
     def connection_client(self, ssock):
+        print("connetto il proxy al client")
         Connection(ssock, self.verbose)
 
 
@@ -89,8 +98,11 @@ class Connection:
         self.verbose = verbose
         self.conn_client = conn_socket
         self.conn_server = None
+        print(self.verbose)
+
 
         try:
+            print("Sono qui")
             self.send_to_client('OK Service Ready')  # Server greeting
             print('Server ok')
             self.listen_client()

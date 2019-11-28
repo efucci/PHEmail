@@ -6,15 +6,13 @@ from cryptography.hazmat.primitives import serialization, hashes
 from cryptography.hazmat.primitives.ciphers import (
     Cipher, algorithms, modes
 )
-from cryptography.hazmat.primitives.serialization import load_pem_public_key
-
-from crypto_utils import read_dk
-from wkd import get_keys
+from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+from cryptography.hazmat.primitives.serialization import load_pem_public_key, load_pem_private_key
 
 
 def encrypt(key, plaintext, associated_data):
     # Generate a random 96-bit IV.
-    iv = os.urandom(12) #12 byte
+    iv = os.urandom(16) #16 byte
 
     # Construct an AES-GCM Cipher object with the given key and a
     # randomly generated IV.
@@ -50,29 +48,27 @@ def decrypt(key, associated_data, iv, ciphertext, tag):
     # If the tag does not match an InvalidTag exception will be raised.
     return decryptor.update(ciphertext) + decryptor.finalize()
 
-#The key is given by PHE, we need username, password and the text to encrypt (private key or decryption key)
+#The key is given by PHE.py, we need username, password and the text to encrypt (private key or decryption key)
 
 def retrieve_key(user, password):
-    #richiesta al PHE
-    print(user,password)
-    key = os.urandom(32)
+    #richiesta al PHE.py
+    file = open(user+'/key.key', 'rb')
+    key = file.read()  # The key will be type bytes
+    file.close()
+
     return key
 
-#Read private key (sign)
-def read_sk(user):
-    file = user+'/sk.key'
-    with open(file, "rb") as key_file:
-        private_key = serialization.load_pem_private_key(
-            key_file.read(),
-            password=None,
-            backend=default_backend()
-        )
+def store_key(user,password):
+    key = os.urandom(32)
+    file = open(user+'/key.key', 'wb')
+    file.write(key)  # The key is type bytes still
+    file.close()
 
-    return private_key
 
-def encrypt_msg(message, user, public_key):
 
-    #public_key = read_ek(user)
+def encrypt_msg(message, user):
+
+    public_key = read_ek(user)
     message = base64.b64encode(message.encode('utf-8'))
     #message=bytes(message,'utf-8')
     encrypted = public_key.encrypt(
@@ -87,8 +83,8 @@ def encrypt_msg(message, user, public_key):
 
 
 #Decrypt
-def decrypt_msg(encrypted, user):
-    private_key = read_dk(user)
+def decrypt_msg(encrypted, private_key):
+    #private_key = read_dk(user)
     #encrypted=bytes(encrypted,"utf-8")
     original_message = private_key.decrypt(
         encrypted,
@@ -100,27 +96,54 @@ def decrypt_msg(encrypted, user):
     )
     return base64.b64decode(original_message).decode('utf-8')
 
-def read_ek(user):
-    encrypt_key = get_keys(user,'encrypt_key')
-    #encrypt_key = load_pem_public_key(encrypt_key.encode('utf-8'),default_backend())
-    return encrypt_key.encode('utf-8')
 
-#key = os.urandom(32)
-key=retrieve_key("user","test")
-#plain = b"a secret message!"
-plain = read_ek('author@example.com')
-print("key in plain\n: ",plain)
+#Read decrypt key
+def read_dk(user):
+    file = user+'/dk.key'
+    with open(file, "rb") as key_file:
+        private_key = serialization.load_pem_private_key(
+            key_file.read(),
+            password=None,
+            backend=default_backend()
+        )
+    return private_key
+
+
+#Read encrypt key
+def read_ek(user):
+
+    file = user+'/ek.pem'
+    with open(file, 'rb') as pem_in:
+        pemlines = pem_in.read()
+    public_key = load_pem_public_key(pemlines, default_backend())
+
+    return public_key
+
+
+store_key('fuele95@gmail.com','oooo')
+key=retrieve_key('fuele95@gmail.com','oooo')
+
+private_key = read_dk('fuele95@gmail.com')
+plaintext =  private_key.private_bytes(
+        encoding=serialization.Encoding.PEM,
+        format=serialization.PrivateFormat.PKCS8,
+        encryption_algorithm=serialization.NoEncryption()
+    )
+
+public_key = read_ek('fuele95@gmail.com')
+
+print("key in plain\n: ", plaintext)
 
 iv, ciphertext, tag = encrypt(
     key,
-    plain,
+    plaintext,
     b"authenticated but not encrypted payload"
 )
 
 
 print("\ncipher key:\n",ciphertext)
 
-dec=decrypt(
+dec_key=decrypt(
     key,
     b"authenticated but not encrypted payload",
     iv,
@@ -129,14 +152,17 @@ dec=decrypt(
 )
 
 
-print("\ndecrypted_key\n",dec)
 
-encrypt_key = load_pem_public_key(dec,default_backend())
 
-enc=encrypt_msg('ciao come stai?', 'user', encrypt_key)
+
+print("\ndecrypted_key\n",dec_key)
+
+dec_key = load_pem_private_key(dec_key, password=None, backend=default_backend())
+
+enc = encrypt_msg('ciao come stai?', 'fuele95@gmail.com' )
 
 print("\nencrypt text\n",enc)
 
-print("\ndecrypt text\n",decrypt_msg(enc,'author@example.com'))
+print("\ndecrypt text\n",decrypt_msg(enc,dec_key))
 
 

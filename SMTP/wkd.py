@@ -8,7 +8,7 @@ import requests, pem
 ROOT_PATH = 'https://127.0.0.1:8000/users/'
 
 #download key from WKD
-def get_keys(user,key):
+def get_keys(user):
 
     try:
         key_filename = './myWKD/cert.key'
@@ -25,7 +25,7 @@ def get_keys(user,key):
     else:
         jtext = response.json()
         print(jtext)
-        return jtext[key]
+        return jtext['encrypt_key']
 
 #upload key to WKD
 def put_keys(user, fullname, public, encrypt):

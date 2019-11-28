@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'djangosecure',
     'sslserver',
     'users.apps.UsersConfig',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
