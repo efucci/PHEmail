@@ -17,7 +17,7 @@ password = ''
 
 class MyIMAPclient:
 
-    def __init__(self, imap_url = 'localhost', imap_port =143):
+    def __init__(self, imap_url = 'localhost', imap_port =993):
         self.connection = socket.socket()
         self.url= imap_url
         self.port=imap_port

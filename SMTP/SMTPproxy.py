@@ -1,13 +1,13 @@
-import ssl, smtpd, smtplib, secure_smtpd, email, base64, asyncore
+import ssl, smtpd, smtplib, secure_smtpd, email, base64
 import logging, os
 from secure_smtpd import proxy_server
-from registration import gen_keys, encrypt_msg, sign_msg
+from SMTP.crypto_utils import encrypt_msg, sign_msg, read_ek
 
 
 # Authorized domain addresses with their corresponding host
 HOSTS = {
     'hotmail': 'smtp-mail.outlook.com',
-    'outlook': 'smtp-mail.outlook.com',
+    'outlook': 'SMTP.office365.com',
     'yahoo': 'smtp.mail.yahoo.com',
     'gmail': 'smtp.gmail.com',
     'studenti.unisa':'smtp.gmail.com',
@@ -18,8 +18,8 @@ HOSTS = {
 }
 
 domain = 'smtp.gmail.com'
-port = 465
-ssl_port = '2525'
+ssl_port = 465
+#ssl_port = '2525'
 fau_tls_port = 587
 fau_ssl_port = 465
 
@@ -28,6 +28,7 @@ class MySMTPproxy(proxy_server.ProxyServer):
     def __init__(self, localaddr, remoteaddr, ssl=False, certfile=None, keyfile=None, ssl_version=ssl.PROTOCOL_SSLv23,
                  require_authentication=False, maximum_execution_time=30, process_count=5):
         smtpd.SMTPServer.__init__(self, localaddr, remoteaddr)
+
         self.logger = logging.getLogger(secure_smtpd.LOG_NAME)
         self.certfile = certfile
         self.keyfile = keyfile
@@ -41,27 +42,28 @@ class MySMTPproxy(proxy_server.ProxyServer):
         self.process_pool = None
         self.server = None
 
-    def send_mail(self,sender, recipient, data):
+    def send_mail(self, sender, recipient, data):
         try:
+
             email_message = email.message_from_string(data)
             text = email_message.get_payload()
             enc = encrypt_msg(text, recipient)
             email_message.set_payload(base64.b64encode(enc).decode('utf-8'))
-
-            sign = sign_msg(text, self.username)
+            sign = sign_msg(text, self.username, self.password)
             email_message['Signature'] = base64.b64encode(sign).decode('utf-8')
-
-            self.server.sendmail(sender, recipient, email_message.as_string())
+            print('email to send\n:'+email_message.as_string())
+            #self.server.sendmail(sender, recipient, email_message.as_string())
             self.quit()
 
         except Exception as e:
-            print("ERROR",e)
+            raise ValueError("ERROR ",e)
 
 
     def process_message(self, peer, mailfrom, rcpttos, data):
-        email_message = email.message_from_string(data)
-        print(email_message)
+
         self.send_mail(mailfrom, rcpttos[0], data)
+
+
 
     def quit(self):
         self.server=None
@@ -80,52 +82,39 @@ class MySMTPproxy(proxy_server.ProxyServer):
     def login(self, username, password):
         self.username = username
         self.password = password
-        '''
         domains = username.split('@')[1].split('.')[:-1]  # Remove before '@' and remove '.com' / '.be' / ...
         domain = '.'.join(str(d) for d in domains)
         try:
             hostname = HOSTS[domain]
-            print(hostname)
-            self.server = smtplib.SMTP_SSL(hostname, ssl_port)
-            self.server.login(username, password)
-            
+            server = smtplib.SMTP_SSL(hostname, ssl_port)
+            server.login(username, password)
+            self.server = server
+
             if self.server.has_extn('STARTTLS'):
                 self.server.starttls()
                 self.server.ehlo()  # re-identify ourselves over TLS connection
 
-            if not os.path.exists(self.username):
-                os.mkdir(self.username)
-                gen_keys(self.username)
-
-            if not os.path.exists(recipient):
-                os.mkdir(recipient)
-                gen_keys(recipient)
-
         except KeyError:
             raise ValueError('Error while connecting to the server: '
                              + 'Invalid domain name ' + domain)
-        except Exception:
+        except Exception as e:
+            print(e)
             raise ValueError('Error while connecting to the server: '
-                             + 'Invalid credentials: ' + username + " / " + password)
-        '''
-
-#Credentials smpt for MailTrap
-#user ='4af48ff5bf173f'
-#password = ''
-#domain = 'smtp.mailtrap.io'
+                             + 'Invalid credentials: ' + username + " / " + password )
 
 
 logger = logging.getLogger( secure_smtpd.LOG_NAME )
 logger.setLevel(logging.INFO)
 
+
 server = MySMTPproxy(
-    ('127.0.0.1', 1025),
+    ('127.0.0.1', 2525),
     None,
     require_authentication=True,
     ssl=True,
     certfile='ssl/certs/server.crt',
     keyfile='ssl/certs/server.key',
-    #maximum_execution_time = 2.0
+    maximum_execution_time = 15.0
     )
 
 server.run()
