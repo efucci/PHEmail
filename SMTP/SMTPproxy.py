@@ -52,7 +52,7 @@ class MySMTPproxy(proxy_server.ProxyServer):
             sign = sign_msg(text, self.username, self.password)
             email_message['Signature'] = base64.b64encode(sign).decode('utf-8')
             print('email to send\n:'+email_message.as_string())
-            #self.server.sendmail(sender, recipient, email_message.as_string())
+            self.server.sendmail(sender, recipient, email_message.as_string())
             self.quit()
 
         except Exception as e:

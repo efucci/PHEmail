@@ -5,10 +5,10 @@ from email.mime.text import MIMEText
 
 
 # Create the message
-msg = MIMEText('Hi, how are you? :)')
-msg['To'] = email.utils.formataddr(('Recipient', 'fuele95@gmail.com'))
-msg['From'] = email.utils.formataddr(('Author', 'fuele95@gmail.com'))
-msg['Subject'] = 'Simple test message'
+#msg = MIMEText('Hi, how are you? :)')
+#msg['To'] = email.utils.formataddr(('Recipient', 'fuele95@gmail.com'))
+#msg['From'] = email.utils.formataddr(('Author', 'fuele95@gmail.com'))
+#msg['Subject'] = 'Simple test message'
 
 
 try:
@@ -22,8 +22,15 @@ try:
      # show communication with the server
     username = input('username: ')
     password = getpass.getpass('password: ')
-    mail_to = input('recipient: ')
+
     server.login(username, password=password)
+    mail_to = input('recipient: ')
+    subject = input('Write subject: ')
+    textmail = input('Write text: ')
+    msg = MIMEText(textmail)
+    msg['From'] = username
+    msg['To'] = mail_to
+    msg['Subject'] = subject
     server.sendmail(username, mail_to , msg.as_string())
     server.quit()
 

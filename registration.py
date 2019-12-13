@@ -32,9 +32,8 @@ def gen_keys(fullname, user, password):
             format=serialization.PublicFormat.SubjectPublicKeyInfo
         )
 
-
-        #PHE.store_private_keys(decrypt_key, private_key, user, password)
-        #put_keys(user, fullname, public_pem, encrypt_pem)
+        PHE.store_private_keys(decrypt_key, private_key, user, password)
+        put_keys(user, fullname, public_pem, encrypt_pem)
 
     except Exception as e:
         raise ValueError(f'An error occurred: {e}')

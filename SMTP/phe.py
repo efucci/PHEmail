@@ -32,7 +32,7 @@ def retrieve_key(user, password):
     n = read_n(user)
     t = read_t(user)
 
-    m = wc.validation(user+password, t , n)
+    m = wc.validation(user+password, t, n)
 
 
     if m is not None:
@@ -43,7 +43,6 @@ def retrieve_key(user, password):
         #raise ValueError('Error while retrieving key from phe. Incorrect password or username: ' + user)
         m=read_byte(user+'/m')
         return m
-
 
 
 '''

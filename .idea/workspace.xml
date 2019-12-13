@@ -2,39 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="77d48be2-d4ed-456e-bdf6-bf87777856a9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/PHEproject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PHEproject.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/4af48ff5bf173f/dk.key" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/4af48ff5bf173f/ek.pem" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/4af48ff5bf173f/pk.pem" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/4af48ff5bf173f/sk.key" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/IMAP/IMAPclient.py" beforeDir="false" afterPath="$PROJECT_DIR$/IMAP/IMAPclient.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IMAP/IMAPproxy.py" beforeDir="false" afterPath="$PROJECT_DIR$/IMAP/IMAPproxy.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IMAP/author@example.com/dk.key" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/IMAP/crypto_utils.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/IMAP/fuele95@gmail.com/dk.key" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/IMAP/phe.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/IMAP/wkd.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/IMAP/eleonorafucci@outlook.com/n" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/IMAP/eleonorafucci@outlook.com/t" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/IMAP/key.b64" beforeDir="false" afterPath="$PROJECT_DIR$/IMAP/key.b64" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IMAP/phe.py" beforeDir="false" afterPath="$PROJECT_DIR$/IMAP/phe.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IMAP/pheclient/webclient.py" beforeDir="false" afterPath="$PROJECT_DIR$/IMAP/pheclient/webclient.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IMAP/proxy.py" beforeDir="false" afterPath="$PROJECT_DIR$/IMAP/proxy.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/PHE.py" beforeDir="false" afterPath="$PROJECT_DIR$/PHE.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SMTP/SMTPclient.py" beforeDir="false" afterPath="$PROJECT_DIR$/SMTP/SMTPclient.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SMTP/SMTPproxy.py" beforeDir="false" afterPath="$PROJECT_DIR$/SMTP/SMTPproxy.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SMTP/author@example.com/sk.key" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/SMTP/crypto_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/SMTP/crypto_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SMTP/fuele95@gmail.com/sk.key" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SMTP/eleonorafucci@outlook.com/n" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SMTP/eleonorafucci@outlook.com/private_key.key" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SMTP/eleonorafucci@outlook.com/t" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SMTP/key.b64" beforeDir="false" afterPath="$PROJECT_DIR$/SMTP/key.b64" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/SMTP/phe.py" beforeDir="false" afterPath="$PROJECT_DIR$/SMTP/phe.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SMTP/wkd.py" beforeDir="false" afterPath="$PROJECT_DIR$/SMTP/wkd.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/author@example.com/dk.key" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/author@example.com/ek.pem" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/author@example.com/pk.pem" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/author@example.com/sk.key" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuele95@gmail.com/dk.key" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuele95@gmail.com/ek.pem" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuele95@gmail.com/key.key" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuele95@gmail.com/pk.pem" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/fuele95@gmail.com/sk.key" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/eleonorafucci@outlook.com/m" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/mail_functions.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/myWKD/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/myWKD/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pheclient/webclient.py" beforeDir="false" afterPath="$PROJECT_DIR$/pheclient/webclient.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/registration.py" beforeDir="false" afterPath="$PROJECT_DIR$/registration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wkd.py" beforeDir="false" afterPath="$PROJECT_DIR$/wkd.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/serve_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/serve_test.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -50,41 +38,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/registration.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="4" column="8" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IMAP/phe.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="27" column="32" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="32" />
+            <state relative-caret-position="720">
+              <caret line="48" selection-start-line="48" selection-end-line="48" />
               <folding>
-                <element signature="e#0#19#0" expanded="true" />
+                <element signature="e#0#56#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/IMAP/crypto_utils.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="57" column="107" lean-forward="true" selection-start-line="57" selection-start-column="107" selection-end-line="57" selection-end-column="107" />
-              <folding>
-                <element signature="e#0#9#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IMAP/wkd.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="24" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -92,8 +50,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SMTP/SMTPproxy.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="63" column="8" selection-start-line="63" selection-start-column="8" selection-end-line="63" selection-end-column="8" />
+            <state relative-caret-position="157">
+              <caret line="25" column="34" selection-start-line="25" selection-start-column="34" selection-end-line="25" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -101,8 +59,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/IMAP/IMAPproxy.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="403">
-              <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+            <state relative-caret-position="47">
+              <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
             </state>
           </provider>
         </entry>
@@ -110,8 +68,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/IMAP/proxy.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="325" column="30" lean-forward="true" selection-start-line="325" selection-start-column="30" selection-end-line="325" selection-end-column="30" />
+            <state relative-caret-position="303">
+              <caret line="233" selection-start-line="233" selection-end-line="233" />
               <folding>
                 <element signature="e#41#91#0" expanded="true" />
               </folding>
@@ -122,11 +80,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SMTP/SMTPclient.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
-              <caret line="26" column="28" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="28" />
-              <folding>
-                <element signature="e#0#14#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="287">
+              <caret line="36" column="39" lean-forward="true" selection-start-line="36" selection-start-column="39" selection-end-line="36" selection-end-column="39" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/serve_test.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="35" lean-forward="true" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/IMAP/wkd.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" selection-start-line="11" selection-end-line="11" />
             </state>
           </provider>
         </entry>
@@ -134,8 +107,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/PHE.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
-              <caret line="35" column="16" selection-start-line="35" selection-start-column="16" selection-end-line="35" selection-end-column="16" />
+            <state relative-caret-position="408">
+              <caret line="57" column="23" selection-start-line="57" selection-start-column="23" selection-end-line="57" selection-end-column="23" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
               </folding>
@@ -146,8 +119,23 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pheclient/webclient.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
+            <state relative-caret-position="118">
+              <caret line="17" selection-start-line="17" selection-end-line="17" />
+              <folding>
+                <element signature="e#20#33#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/SMTP/phe.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="176">
+              <caret line="46" selection-start-line="46" selection-end-line="46" />
+              <folding>
+                <element signature="e#0#19#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -205,24 +193,25 @@
         <option value="$PROJECT_DIR$/IMAP/imapproxy/wkd.py" />
         <option value="$PROJECT_DIR$/IMAP/imapproxy/test.py" />
         <option value="$PROJECT_DIR$/IMAP/imapproxy/proxy.py" />
-        <option value="$PROJECT_DIR$/serve_test.py" />
         <option value="$PROJECT_DIR$/wkd.py" />
         <option value="$PROJECT_DIR$/IMAP/imapproxy/phe.py" />
         <option value="$PROJECT_DIR$/SMTP/pheclient/webclient.py" />
-        <option value="$PROJECT_DIR$/PHE.py" />
-        <option value="$PROJECT_DIR$/SMTP/phe.py" />
-        <option value="$PROJECT_DIR$/IMAP/phe.py" />
-        <option value="$PROJECT_DIR$/IMAP/proxy.py" />
         <option value="$PROJECT_DIR$/IMAP/fetch.py" />
         <option value="$PROJECT_DIR$/IMAP/IMAPproxy.py" />
-        <option value="$PROJECT_DIR$/IMAP/pheclient/webclient.py" />
-        <option value="$PROJECT_DIR$/registration.py" />
-        <option value="$PROJECT_DIR$/pheclient/webclient.py" />
-        <option value="$PROJECT_DIR$/SMTP/SMTPclient.py" />
-        <option value="$PROJECT_DIR$/SMTP/SMTPproxy.py" />
         <option value="$PROJECT_DIR$/SMTP/crypto_utils.py" />
         <option value="$PROJECT_DIR$/IMAP/wkd.py" />
         <option value="$PROJECT_DIR$/IMAP/crypto_utils.py" />
+        <option value="$PROJECT_DIR$/IMAP/pheclient/webclient.py" />
+        <option value="$PROJECT_DIR$/registration.py" />
+        <option value="$PROJECT_DIR$/pheclient/webclient.py" />
+        <option value="$PROJECT_DIR$/IMAP/phe.py" />
+        <option value="$PROJECT_DIR$/SMTP/phe.py" />
+        <option value="$PROJECT_DIR$/myWKD/users/urls.py" />
+        <option value="$PROJECT_DIR$/PHE.py" />
+        <option value="$PROJECT_DIR$/SMTP/SMTPproxy.py" />
+        <option value="$PROJECT_DIR$/IMAP/proxy.py" />
+        <option value="$PROJECT_DIR$/SMTP/SMTPclient.py" />
+        <option value="$PROJECT_DIR$/serve_test.py" />
       </list>
     </option>
   </component>
@@ -270,10 +259,10 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/SMTP/fuele95@gmail.com" />
       <recent name="$PROJECT_DIR$/IMAP" />
-      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/SMTP" />
+      <recent name="$PROJECT_DIR$/SMTP/fuele95@gmail.com" />
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/IMAP/imapproxy/fuele95@gmail.com" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
@@ -296,7 +285,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.SMTPproxy">
+  <component name="RunManager" selected="Python.IMAPproxy">
     <configuration name="IMAPproxy" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="PHEproject" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -310,27 +299,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/IMAP/IMAPproxy.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="SMTPclient" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="PHEproject" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/SMTP" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SMTP/SMTPclient.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -360,6 +328,27 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="phe (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="PHEproject" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/SMTP" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SMTP/phe.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="registration" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="PHEproject" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -381,7 +370,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="webclient" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="urls" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="PHEproject" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -389,11 +378,11 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/pheclient" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/myWKD/users" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/pheclient/webclient.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/myWKD/users/urls.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -404,11 +393,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.SMTPproxy" />
         <item itemvalue="Python.IMAPproxy" />
-        <item itemvalue="Python.SMTPclient" />
-        <item itemvalue="Python.webclient" />
+        <item itemvalue="Python.SMTPproxy" />
         <item itemvalue="Python.registration" />
+        <item itemvalue="Python.urls" />
+        <item itemvalue="Python.phe (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -435,7 +424,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="877" extended-state="0" />
+    <frame x="0" y="23" width="1440" height="877" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49324325" visible="true" weight="0.2699084" />
@@ -443,7 +432,7 @@
       <window_info id="Favorites" order="2" sideWeight="0.50678736" side_tool="true" weight="0.23114869" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3299363" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4989429" visible="true" weight="0.30828026" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4989429" visible="true" weight="0.34140128" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -517,25 +506,6 @@
     </option>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/cryptography/hazmat/backends/openssl/ciphers.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="178" selection-start-line="178" selection-end-line="178" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/Caches/PyCharmCE2018.3/python_stubs/-1199943127/builtins.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="5572" column="6" selection-start-line="5572" selection-start-column="6" selection-end-line="5572" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/helpers/typeshed/stdlib/3/re.pyi">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1686" />
-      </provider>
-    </entry>
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/kittengroomer_email/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -575,16 +545,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1260">
           <caret line="90" column="37" selection-start-line="90" selection-start-column="34" selection-end-line="90" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/Python/3.6/lib/python/site-packages/secure_smtpd/proxy_server.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="27" column="30" lean-forward="true" selection-start-line="27" selection-end-line="28" />
-          <folding>
-            <element signature="e#0#13#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -691,16 +651,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/serve_test.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="26" selection-start-line="27" selection-start-column="17" selection-end-line="27" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pheclient/key.b64">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/IMAP/pheclient/key.b64">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -709,33 +659,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/SMTP/fuele95@gmail.com/n">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file:///usr/local/lib/python3.6/site-packages/urllib3/connectionpool.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="1003" selection-start-line="1003" selection-end-line="1003" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SMTP/pheclient/webclient.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-          <folding>
-            <element signature="e#20#33#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SMTP/phe.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="446">
-          <caret line="45" lean-forward="true" selection-start-line="25" selection-end-line="45" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file:///usr/local/Cellar/python/3.6.5_1/Frameworks/Python.framework/Versions/3.6/lib/python3.6/threading.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -754,64 +677,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/registration.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="8" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/PHE.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="35" column="16" selection-start-line="35" selection-start-column="16" selection-end-line="35" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pheclient/webclient.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SMTP/SMTPclient.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
-          <caret line="26" column="28" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#14#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/SMTP/SMTPproxy.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="63" column="8" selection-start-line="63" selection-start-column="8" selection-end-line="63" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IMAP/pheclient/webclient.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="412">
-          <caret line="118" column="13" selection-start-line="118" selection-start-column="13" selection-end-line="118" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IMAP/phe.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="27" column="32" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#19#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SMTP/crypto_utils.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="299">
@@ -822,37 +687,167 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IMAP/IMAPproxy.py">
+    <entry file="file://$PROJECT_DIR$/IMAP/crypto_utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
-          <caret line="32" column="13" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+        <state relative-caret-position="-510">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IMAP/proxy.py">
+    <entry file="file://$PROJECT_DIR$/mail_functions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="325" column="30" lean-forward="true" selection-start-line="325" selection-start-column="30" selection-end-line="325" selection-end-column="30" />
+        <state relative-caret-position="-841">
           <folding>
-            <element signature="e#41#91#0" expanded="true" />
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SMTP/key.b64">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pheclient/key.b64">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IMAP/pheclient/webclient.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="20" column="45" lean-forward="true" selection-start-line="20" selection-start-column="45" selection-end-line="20" selection-end-column="45" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SMTP/pheclient/webclient.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+          <folding>
+            <element signature="e#20#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IMAP/phe.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="377">
+          <caret line="46" selection-start-line="46" selection-end-line="46" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SMTP/phe.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="46" selection-start-line="46" selection-end-line="46" />
+          <folding>
+            <element signature="e#0#19#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/IMAP/wkd.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="24" selection-start-line="22" selection-start-column="24" selection-end-line="22" selection-end-column="24" />
+        <state relative-caret-position="165">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IMAP/crypto_utils.py">
+    <entry file="file://$PROJECT_DIR$/myWKD/users/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="57" column="107" lean-forward="true" selection-start-line="57" selection-start-column="107" selection-end-line="57" selection-end-column="107" />
+        <state relative-caret-position="105">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding>
+            <element signature="e#16#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pheclient/webclient.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="118">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+          <folding>
+            <element signature="e#20#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/PHE.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="57" column="23" selection-start-line="57" selection-start-column="23" selection-end-line="57" selection-end-column="23" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/registration.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="720">
+          <caret line="48" selection-start-line="48" selection-end-line="48" />
+          <folding>
+            <element signature="e#0#56#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Python/3.6/lib/python/site-packages/secure_smtpd/proxy_server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-988">
+          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SMTP/SMTPproxy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="25" column="34" selection-start-line="25" selection-start-column="34" selection-end-line="25" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IMAP/IMAPproxy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="47">
+          <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///usr/local/lib/python3.6/site-packages/urllib3/connectionpool.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="1003" selection-start-line="1003" selection-end-line="1003" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IMAP/proxy.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="233" selection-start-line="233" selection-end-line="233" />
+          <folding>
+            <element signature="e#41#91#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/SMTP/SMTPclient.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="36" column="39" lean-forward="true" selection-start-line="36" selection-start-column="39" selection-end-line="36" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/serve_test.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="35" lean-forward="true" selection-start-line="14" selection-start-column="35" selection-end-line="14" selection-end-column="35" />
         </state>
       </provider>
     </entry>

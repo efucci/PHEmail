@@ -14,7 +14,7 @@ from cryptography.hazmat.primitives.asymmetric import rsa
 
 group = ECGroup(prime256v1)
 
-from client import Client
+from .client import Client
 
 class WebClient:
 

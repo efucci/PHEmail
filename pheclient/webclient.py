@@ -113,7 +113,7 @@ if __name__ == '__main__':
     #m, t, n = wc.enrollment("s3kr1t")
     #print(m,t,n)
     #print(wc.validation("s3kr1t", t, n))
-
+    '''
     m, t, n = wc.enrollment("Eleonora")
 
     n_bytes = objectToBytes(n, group)
@@ -125,6 +125,7 @@ if __name__ == '__main__':
     m=None
     t=None
     n=None
+    '''
     m=read_m()
     t=read_t()
     n=read_n()

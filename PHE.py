@@ -11,8 +11,6 @@ from pheclient.webclient import WebClient
 group = ECGroup(prime256v1)
 
 
-#The key is given by PHE.py, we need username, password and the text to encrypt (private key or decryption key)
-
 def read_byte(file):
     file = open(file, 'rb')
     data = file.read()  # The data will be type bytes
@@ -51,7 +49,8 @@ def store_private_keys(decrypt_key, secret_key, user, password):
 
     if not os.path.exists(user):
         os.mkdir(user)
-    write_byte(user+'/m', m_bytes)
+    write_byte(user+'/m', m_bytes) #TO TEST WITHOUT PHE
+
 
     imap_path = 'IMAP/'+user
     if not os.path.exists(imap_path):
@@ -59,7 +58,7 @@ def store_private_keys(decrypt_key, secret_key, user, password):
     write_byte(imap_path+'/private_key.key', decrypt_key)
     write_object(imap_path + '/n', n)
     write_object(imap_path + '/t', t)
-    write_byte(imap_path + '/m', m_bytes)
+
 
     smtp_path = 'SMTP/'+user
     if not os.path.exists(smtp_path):
@@ -67,7 +66,7 @@ def store_private_keys(decrypt_key, secret_key, user, password):
     write_byte(smtp_path + '/private_key.key', secret_key)
     write_object(smtp_path + '/n', n)
     write_object(smtp_path + '/t', t)
-    write_byte(smtp_path + '/m', m_bytes)
+
 
 
 '''

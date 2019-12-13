@@ -194,7 +194,7 @@ class Connection:
         self.listen_server(server_tag)
 
     def transmit_fetch(self, mail):
-        print('transmit fetch')
+        #print('transmit fetch')
         server_tag = self.conn_server._new_tag().decode()
         self.send_to_server(self.request.replace(self.client_tag, server_tag, 1))
         #self.listen_server_fetch(server_tag,mail)
@@ -209,12 +209,12 @@ class Connection:
             body = None
             if re.search(r'HEADER', self.request):
                 header = lines[:-1]
-                print('header', header)
+                #print('header', header)
             elif re.search(r'BODY\[]',self.request):
                 body = lines
             else:
                 body = lines[-1]
-                print('body', body)
+                #print('body', body)
 
         while True:
             response = self.recv_from_server()
@@ -224,15 +224,14 @@ class Connection:
             if response_match:
                 server_response_tag = response_match.group('tag')
                 if server_tag == server_response_tag:
-                    print('server tag', server_response_tag, 'client tag', self.client_tag)
-                    print('risposta server',response.replace(server_response_tag, self.client_tag, 1))
+                    #print('server tag', server_response_tag, 'client tag', self.client_tag)
+                    #print('risposta server',response.replace(server_response_tag, self.client_tag, 1))
                     # Verify the command completion corresponds to the client command
                     self.send_to_client(response.replace(server_response_tag, self.client_tag, 1))
                     return
             
             ##   Untagged or continuation response or data messages
-            print(response)
-            print(mail is None)
+
             if mail is not None:
                 if re.search(r'BODYSTRUCTURE', response) or re.search(r'BODY', response) or re.search(r'HEADER', response) and header is not None:
                     self.send_to_client(response)
@@ -259,63 +258,6 @@ class Connection:
                     self.send_to_server(client_sequence)
                     client_sequence = self.recv_from_client()
                 self.send_to_server(client_sequence)
-
-    def listen_server_fetch(self, server_tag, mail):
- ############ separare le richieste dell'header da quelle del body! #####################
-        if mail is not None:
-            lines = mail.as_string().splitlines()
-            header = None
-            body = None
-            if re.search(r'HEADER',self.request):
-                header = lines[:-1]
-                print('header',header)
-            else:
-                #body = lines[-1]
-                body = lines
-                print('body',body)
-
-        while True:
-            response = self.recv_from_server()
-            response_match = Tagged_Response.match(response)
-            ##   Command completion response
-            if response_match:
-                server_response_tag = response_match.group('tag')
-                if server_tag == server_response_tag:
-                    print('server tag:', server_response_tag, 'client tag:', self.client_tag)
-                    print('risposta server', response.replace(server_response_tag, self.client_tag, 1))
-                    # Verify the command completion corresponds to the client command
-                    self.send_to_client(response.replace(server_response_tag, self.client_tag, 1))
-                    return
-
-            print('****risposta dal server senza tag: ',response)
-            if mail is not None:
-                if re.search(r'BODYSTRUCTURE',response) or re.search(r'BODY',response) or re.search(r'HEADER',response):
-                    pass
-                elif header is not None:
-                    for key in header:
-                        self.send_to_client(key)
-                    header = None
-                elif body is not None:
-                    self.send_to_client(body)
-                    body = None
-
-            self.send_to_client(response)
-
-
-                    ##   Untagged or continuation response or data messages
-
-
-            #self.send_to_client(response)
-
-            if response.startswith('+') and self.client_command.upper() != 'FETCH':
-                ##   Continuation response
-                client_sequence = self.recv_from_client()
-                while client_sequence != '' and not client_sequence.endswith(
-                        '\r\n'):  # Client sequence ends with empty request
-                    self.send_to_server(client_sequence)
-                    client_sequence = self.recv_from_client()
-                self.send_to_server(client_sequence)
-
 
 
     def connect_server(self, username, password):
@@ -423,7 +365,7 @@ class Connection:
         """ Send String data (without CRLF) to the client """
         b_data = str_data.encode('utf-8', 'replace') + CRLF
         self.conn_client.send(b_data)
-        print(b_data)
+        #print(b_data)
         if self.verbose: 
             print("[<--]: ", b_data)
 

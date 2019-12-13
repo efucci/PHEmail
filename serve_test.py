@@ -26,3 +26,4 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             conn.send(data_server)
     end = time.time()
     print('tempo impiegato', (end-start)/60)
+

@@ -15,7 +15,7 @@ def read_byte(file):
 
 def read_n(user):
     n_bytes = read_byte(user+'/n')
-    n = bytesToObject(n_bytes, group)
+    n = tuple(bytesToObject(n_bytes, group))
     return n
 
 def read_t(user):
@@ -32,7 +32,7 @@ def retrieve_key(user, password):
     n = read_n(user)
     t = read_t(user)
 
-    m = wc.validation(user+password, t , n)
+    m = wc.validation(user+password, t, n)
 
 
     if m is not None:
@@ -41,8 +41,6 @@ def retrieve_key(user, password):
         return key
     else:
         #raise ValueError('Error while retrieving key from phe. Incorrect password or username: ' + user)
-        m=read_byte(user+'/m')
+        m=read_byte('../'+user+'/m')
         return m
-
-
 
